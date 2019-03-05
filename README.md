@@ -34,4 +34,12 @@ $ mysql -u root -p
 > use wd
 ```
 
+## Shut down project
 
+```sh
+# Turn off container
+$ docker-compose kill
+
+# Remove container
+$ docker-compose down
+```
