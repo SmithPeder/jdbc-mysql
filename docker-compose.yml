@@ -5,15 +5,21 @@ volumes:
 
 services:
  mysql:
+
   image: mysql:8.0
-  container_name: mysql
+
+  container_name: tdt4145_mysql
+
   volumes:
     - dbdata:/var/lib/mysql
+
   restart: always
+
   environment:
     - MYSQL_ROOT_PASSWORD=root
     - MYSQL_DATABASE=wd
     - MYSQL_USER=root
     - MYSQL_PASSWORD=root
+
   ports:
     - "33061:3306"
