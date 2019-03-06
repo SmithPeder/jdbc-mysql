@@ -8,9 +8,9 @@
 $ docker-compose up -d
 ```
 
-## Gettings started
+## Getting started
 
-- Access the docker container where the MySQL database is running. 
+- Access the docker container where the MySQL database is running.
 
 ```sh
 # Get container id, and attatch STDOUT and STDIN to this container
@@ -25,6 +25,18 @@ $ docker exec -it [id] sh
 # Enter the running MySQL server
 $ mysql -u root -p
 ```
+
+## Running java source code
+
+> This project utilize he `JDBC api` to connect to the MySQL database
+
+The connector can be download [here](https://dev.mysql.com/downloads/connector/j/8.0.html). After downloading the `.jar` you'll need to add it to your `CLASSPATH`.
+
+```sh
+# Note the `YOUR_PATH` section, as you can put this wherever you want.
+export CLASSPATH=.:$CLASSPATH:~/[YOUR_PATH]/mysql-connector-java-8.0.15.jar
+```
+
 
 ## Shut down project
 
