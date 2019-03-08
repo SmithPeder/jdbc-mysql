@@ -43,8 +43,12 @@ public class JDBC {
           DB.dropDatabase();
           break;
         case 4:
-          EquipmentController eq = new EquipmentController();
-          eq.start();
+          EquipmentController eqc = new EquipmentController();
+          eqc.start();
+          break;
+        case 5:
+          ExerciseController ecc = new ExerciseController();
+          ecc.start();
           break;
         default:
           System.out.println("DEFAULT");

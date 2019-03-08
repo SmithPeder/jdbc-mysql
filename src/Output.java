@@ -16,6 +16,10 @@ public class Output {
     white("| 2 - Load fixtures         |");
     white("| 3 - Drop database         |");
     white("| 4 - Equipment menu        |");
+    white("| 5 - Exercise menu         |");
+    white("| 4 - Equipment menu        |");
+    white("| 4 - Equipment menu        |");
+    white("| 4 - Equipment menu        |");
     white("=============================");
   }
 
@@ -23,6 +27,27 @@ public class Output {
     white("=============================");
     white("| 0 - Back                  |");
     white("| 1 - Get all equipment     |");
+    white("=============================");
+  }
+
+  void exerciseMenu() {
+    white("=============================");
+    white("| 0 - Back                  |");
+    white("| 1 - Get all exercises     |");
+    white("=============================");
+  }
+
+  void noteMenu() {
+    white("=============================");
+    white("| 0 - Back                  |");
+    white("| 1 - Get all notes         |");
+    white("=============================");
+  }
+
+  void groupMenu() {
+    white("=============================");
+    white("| 0 - Back                  |");
+    white("| 1 - Get all groups        |");
     white("=============================");
   }
 
@@ -35,6 +60,10 @@ public class Output {
 
   void yellow(String s) {
     System.out.println((char)27 + "[33m" + s);
+  }
+
+  void yellownoln(String s) {
+    System.out.print((char)27 + "[33m" + s);
   }
 
   void green(String s) {
@@ -63,7 +92,7 @@ public class Output {
         for (int i = 1; i <= numberOfColumns; i++) {
           if (i > 1) System.out.print(",  ");
           String columnName = rsmd.getColumnName(i);
-          System.out.print(columnName);
+          yellownoln(columnName);
         }
         System.out.println("");
 
@@ -71,7 +100,7 @@ public class Output {
           for (int i = 1; i <= numberOfColumns; i++) {
             if (i > 1) System.out.print(",  ");
             String columnValue = rs.getString(i);
-            System.out.print(columnValue);
+            yellownoln(columnValue);
           }
           System.out.println("");
         }
