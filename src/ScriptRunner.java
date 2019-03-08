@@ -204,7 +204,7 @@ public class ScriptRunner {
             final String errText = String.format("Error executing '%s' (line %d): %s",
                     command, lineReader.getLineNumber(), e.getMessage());
             printlnError(errText);
-            System.err.println(errText);
+            JDBC.OUTPUT.red(errText);
             if (stopOnError) {
                 throw new SQLException(errText, e);
             }
