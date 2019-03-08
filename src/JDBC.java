@@ -54,6 +54,10 @@ public class JDBC {
           NoteController nc = new NoteController();
           nc.start();
           break;
+        case 7:
+          WorkoutController wc = new WorkoutController();
+          wc.start();
+          break;
         default:
           System.out.println("DEFAULT");
       }

@@ -18,7 +18,7 @@ public class Output {
     white("| 4 - Equipment menu        |");
     white("| 5 - Exercise menu         |");
     white("| 6 - Note menu             |");
-    white("| 4 - Equipment menu        |");
+    white("| 7 - Workout menu          |");
     white("| 4 - Equipment menu        |");
     white("=============================");
   }
@@ -41,6 +41,13 @@ public class Output {
     white("=============================");
     white("| 0 - Back                  |");
     white("| 1 - Get all notes         |");
+    white("=============================");
+  }
+
+  void workoutMenu() {
+    white("=============================");
+    white("| 0 - Back                  |");
+    white("| 1 - Get all workouts      |");
     white("=============================");
   }
 
