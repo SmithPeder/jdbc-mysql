@@ -17,7 +17,7 @@ public class Output {
     white("| 3 - Drop database         |");
     white("| 4 - Equipment menu        |");
     white("| 5 - Exercise menu         |");
-    white("| 4 - Equipment menu        |");
+    white("| 6 - Note menu             |");
     white("| 4 - Equipment menu        |");
     white("| 4 - Equipment menu        |");
     white("=============================");

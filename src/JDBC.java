@@ -50,6 +50,10 @@ public class JDBC {
           ExerciseController ecc = new ExerciseController();
           ecc.start();
           break;
+        case 6:
+          NoteController nc = new NoteController();
+          nc.start();
+          break;
         default:
           System.out.println("DEFAULT");
       }
