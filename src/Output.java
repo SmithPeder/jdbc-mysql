@@ -19,7 +19,7 @@ public class Output {
     white("| 5 - Exercise menu         |");
     white("| 6 - Note menu             |");
     white("| 7 - Workout menu          |");
-    white("| 4 - Equipment menu        |");
+    white("| 8 - Group menu            |");
     white("=============================");
   }
 

@@ -58,6 +58,10 @@ public class JDBC {
           WorkoutController wc = new WorkoutController();
           wc.start();
           break;
+        case 8:
+          GroupController gc = new GroupController();
+          gc.start();
+          break;
         default:
           System.out.println("DEFAULT");
       }
