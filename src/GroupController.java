@@ -4,9 +4,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class GroupController{
-  Statement stmt = null;
-  Connection CON = DatabaseController.CON;
+public class GroupController extends BaseController{
+
+  public GroupController (String s) {
+    super(s);
+  }
 
   public void start() {
     int userInput;
@@ -28,17 +30,6 @@ public class GroupController{
         default:
           System.out.println("DEFAULT");
       }
-    }
-  }
-
-  private void getAll() {
-    try {
-      stmt = CON.createStatement();
-      ResultSet rs = stmt.executeQuery("SELECT * FROM exercise_group;");
-      ResultSetMetaData rsmd = rs.getMetaData();
-      JDBC.OUTPUT.printColumns(rs, rsmd);
-    } catch(SQLException sql) {
-      JDBC.OUTPUT.red(sql.toString());
     }
   }
 }

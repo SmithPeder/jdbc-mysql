@@ -4,9 +4,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class EquipmentController {
-  Statement stmt = null;
-  Connection CON = DatabaseController.CON;
+public class EquipmentController extends BaseController {
+
+  public EquipmentController(String s) {
+    super(s);
+  }
 
   public void start() {
     int userInput;
@@ -28,18 +30,6 @@ public class EquipmentController {
         default:
           System.out.println("DEFAULT");
       }
-    }
-
-  }
-
-  private void getAll() {
-    try {
-      stmt = CON.createStatement();
-      ResultSet rs = stmt.executeQuery("SELECT * FROM equipment;");
-      ResultSetMetaData rsmd = rs.getMetaData();
-      JDBC.OUTPUT.printColumns(rs, rsmd);
-    } catch(SQLException sql) {
-      JDBC.OUTPUT.red(sql.toString());
     }
   }
 }

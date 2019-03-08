@@ -4,9 +4,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class NoteController {
-  Statement stmt = null;
-  Connection CON = DatabaseController.CON;
+public class NoteController extends BaseController {
+
+  public NoteController (String s) {
+    super(s);
+  }
 
   public void start() {
     int userInput;
@@ -28,17 +30,6 @@ public class NoteController {
         default:
           System.out.println("DEFAULT");
       }
-    }
-  }
-
-  private void getAll() {
-    try {
-      stmt = CON.createStatement();
-      ResultSet rs = stmt.executeQuery("SELECT * FROM note;");
-      ResultSetMetaData rsmd = rs.getMetaData();
-      JDBC.OUTPUT.printColumns(rs, rsmd);
-    } catch(SQLException sql) {
-      JDBC.OUTPUT.red(sql.toString());
     }
   }
 }

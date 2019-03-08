@@ -43,23 +43,23 @@ public class JDBC {
           DB.dropDatabase();
           break;
         case 4:
-          EquipmentController eqc = new EquipmentController();
+          EquipmentController eqc = new EquipmentController("equipment");
           eqc.start();
           break;
         case 5:
-          ExerciseController ecc = new ExerciseController();
+          ExerciseController ecc = new ExerciseController("exercise");
           ecc.start();
           break;
         case 6:
-          NoteController nc = new NoteController();
+          NoteController nc = new NoteController("note");
           nc.start();
           break;
         case 7:
-          WorkoutController wc = new WorkoutController();
+          WorkoutController wc = new WorkoutController("workout");
           wc.start();
           break;
         case 8:
-          GroupController gc = new GroupController();
+          GroupController gc = new GroupController("exercise_group");
           gc.start();
           break;
         default:
