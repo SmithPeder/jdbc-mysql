@@ -5,57 +5,31 @@ import java.io.IOException;
 
 public class JDBC {
   static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-  static final String DB_URL = "jdbc:mysql://localhost/?useSSL=false";
+  static final String DB_URL = "jdbc:mysql://localhost:3306/?allowPublicKeyRetrieval=true&useSSL=false";
 
   static final String USER = "root";
   static final String PASS = "root";
 
   public static void main(String[] args) {
-    String[] scripts = new String[] {"createTables.sql", "insertData.sql", "selectData.sql"};
-    for(String s : scripts) {
-      try {
-        executeScript(s);
-      } catch (IOException e) {
-        e.printStackTrace();
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
+    try {
+      executeScript();
+    } catch(IOException io) {
+      System.out.println("IO exeption");
+      System.out.println(io);
+    }
+    catch(SQLException sql) {
+      System.out.println("SQL exeption");
+      System.out.println(sql);
     }
   }
 
-  static boolean executeScript(String script) throws IOException, SQLException {
-	  BufferedReader reader = null;
-	  Connection conn = null;
-	  Statement stmt = null;
-    boolean isScriptExecuted = false;
-    System.out.print("Running SQL script - " + script);
+  static boolean executeScript() throws IOException, SQLException {
+	  Connection con = null;
+    con = DriverManager.getConnection(DB_URL, USER, PASS);
 
-    try {
-		  Class.forName(JDBC_DRIVER);
-      conn = DriverManager.getConnection(DB_URL, USER, PASS);
-      BufferedReader in = new BufferedReader(new FileReader(script));
-      String query = "";
-      String str = "";
-      while ((str = in.readLine()) != null) {
-        query += str.replace("\n", " ");
-      }
-      String[] list = query.split(";");
-      for (String q: list) {
-        stmt = conn.createStatement();
-        stmt.execute(q);
-      }
+    ScriptRunner runner = new ScriptRunner(con, false, false);
+    runner.runScript(new BufferedReader(new FileReader("/Users/smith/code/jdbc-mysql/models/models.sql")));
 
-      in.close();
-      System.out.println("...Success");
-      isScriptExecuted = true;
-	  } catch (Exception e) {
-		  e.printStackTrace();
-	  } finally {
-		  if (reader != null)
-			  reader.close();
-		  if (conn != null)
-			  conn.close();
-	  }
-    return isScriptExecuted;
+    return true;
   }
 }
