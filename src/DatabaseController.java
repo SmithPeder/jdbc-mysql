@@ -76,16 +76,25 @@ public class DatabaseController {
       "fixtures/exercise_exercise_group"
     };
 
-    for(String s : scripts) {
-      try {
-        executeScript(s);
-        JDBC.OUTPUT.fixture(s);
-      } catch (SQLException sql) {
-        JDBC.OUTPUT.error(sql.toString());
-      } catch (IOException io) {
-        JDBC.OUTPUT.error(io.toString());
+    try {
+      Statement stmt = CON.createStatement();
+      stmt.execute("use wd");
+
+      // If the 'use wd' does not throw an exeption we can run the migrations
+      for(String s : scripts) {
+        try {
+          executeScript(s);
+          JDBC.OUTPUT.fixture(s);
+        } catch (SQLException sql) {
+          JDBC.OUTPUT.error(sql.toString());
+        } catch (IOException io) {
+          JDBC.OUTPUT.error(io.toString());
+        }
       }
+    } catch (SQLException sql) {
+      JDBC.OUTPUT.error("Can't apply fixtures with no database!");
     }
+
   }
 
   // Exectute a sql script
