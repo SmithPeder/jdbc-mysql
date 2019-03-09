@@ -26,6 +26,7 @@ public class Output {
     white("=============================");
     white("| 0 - Back                  |");
     white("| 1 - Get all equipment     |");
+    white("| 2 - Add new equipment     |");
     white("=============================");
   }
 
