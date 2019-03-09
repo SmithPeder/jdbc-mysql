@@ -1,7 +1,7 @@
 use wd;
 
 create table if not exists workout (
-  id integer not null,
+  id integer not null auto_increment,
   date datetime,
   time time,
   duration time,
@@ -14,7 +14,7 @@ create table if not exists workout (
 );
 
 create table if not exists equipment (
-  id integer not null,
+  id integer not null auto_increment,
   name varchar(50),
   description varchar(256),
 
@@ -22,7 +22,7 @@ create table if not exists equipment (
 );
 
 create table if not exists note (
-  id integer not null,
+  id integer not null auto_increment,
   purpose varchar(256),
   experiance varchar(256),
   additional_comment varchar(512),
@@ -33,7 +33,7 @@ create table if not exists note (
 );
 
 create table if not exists exercise (
-  id integer not null,
+  id integer not null auto_increment,
   name varchar(50),
   equipment_id integer,
   description varchar(256),
@@ -52,7 +52,7 @@ create table if not exists workout_exercise (
 );
 
 create table if not exists exercise_group (
-  id integer not null,
+  id integer not null auto_increment,
   name varchar(50),
 
   primary key (id)
