@@ -1,71 +1,74 @@
 import java.sql.*;
+import java.util.*;
 
 public class Output {
   void welcome() {
-    blue("=============================");
-    blue("|   Welcome to the diary    |");
-    blue("=============================");
+    System.out.println("\n\n\n");
+    blue("========================================================");
+    blue("|                 Welcome to the diary                 |");
+    blue("========================================================");
     System.out.println();
   }
 
   void menu() {
-    white("=============================");
-    white("==========  MENU  ===========");
-    white("=============================");
-    white("| 0 - Save and quit         |");
-    white("| 1 - Migrate database      |");
-    white("| 2 - Load fixtures         |");
-    white("| 3 - Drop database         |");
-    white("| 4 - Equipment menu        |");
-    white("| 5 - Exercise menu         |");
-    white("| 6 - Note menu             |");
-    white("| 7 - Workout menu          |");
-    white("| 8 - Group menu            |");
-    white("=============================");
+    System.out.println();
+    white("========================================================");
+    white("=======================  MENU  =========================");
+    white("========================================================");
+    white("| 0   -   Save and quit                                |");
+    white("| 1   -   Migrate database                             |");
+    white("| 2   -   Load fixtures                                |");
+    white("| 3   -   Drop database                                |");
+    white("| 4   -   Equipment menu                               |");
+    white("| 5   -   Exercise menu                                |");
+    white("| 6   -   Note menu                                    |");
+    white("| 7   -   Workout menu                                 |");
+    white("| 8   -   Group menu                                   |");
+    white("========================================================");
   }
 
   void equipmentMenu() {
-    white("=============================");
-    white("| 0 - Back                  |");
-    white("| 1 - Get all equipment     |");
-    white("| 2 - Add new equipment     |");
-    white("=============================");
+    white("========================================================");
+    white("| 0   -   Back                                         |");
+    white("| 1   -   Get all equipment                            |");
+    white("| 2   -   Add new equipment                            |");
+    white("========================================================");
   }
 
   void exerciseMenu() {
-    white("=============================");
-    white("| 0 - Back                  |");
-    white("| 1 - Get all exercises     |");
-    white("| 2 - Add new exercise      |");
-    white("=============================");
+    white("========================================================");
+    white("| 0   -   Back                                         |");
+    white("| 1   -   Get all exercises                            |");
+    white("| 2   -   Add new exercise                             |");
+    white("========================================================");
   }
 
   void noteMenu() {
-    white("=============================");
-    white("| 0 - Back                  |");
-    white("| 1 - Get all notes         |");
-    white("=============================");
+    white("========================================================");
+    white("| 0   -   Back                                         |");
+    white("| 1   -   Get all notes                                |");
+    white("========================================================");
   }
 
   void workoutMenu() {
-    white("=============================");
-    white("| 0 - Back                  |");
-    white("| 1 - Get all workouts      |");
-    white("| 2 - Add new workout       |");
-    white("=============================");
+    white("========================================================");
+    white("| 0   -   Back                                         |");
+    white("| 1   -   Get all workouts                             |");
+    white("| 2   -   Add new workout                              |");
+    white("========================================================");
   }
 
   void groupMenu() {
-    white("=============================");
-    white("| 0 - Back                  |");
-    white("| 1 - Get all groups        |");
-    white("=============================");
+    white("========================================================");
+    white("| 0   -   Back                                         |");
+    white("| 1   -   Get all groups                               |");
+    white("========================================================");
   }
 
   void save() {
-    white("=============================");
-    white("|      SAVED AND QUIT       |");
-    white("=============================");
+    white("========================================================");
+    white("|                   SAVED AND QUIT                     |");
+    white("========================================================");
   }
 
   void yellow(String s) {
@@ -116,26 +119,43 @@ public class Output {
     return String.format("%1$-" + n + "s", s);
   }
 
+  String getBorder(String s, int n) {
+    return new String(new char[(n*32)+1]).replace("\0", s);
+  }
+
   void printColumns(ResultSet rs, ResultSetMetaData rsmd) {
+    int numberOfColumns = 0;
     try {
-    int numberOfColumns = rsmd.getColumnCount();
+      numberOfColumns = rsmd.getColumnCount();
+      yellow("\n" + getBorder("=", numberOfColumns));
+      for (int i = 1; i <= numberOfColumns; i++) {
+        String columnName = rsmd.getColumnName(i);
+        yellownoln("| " + padRight(columnName,30));
+
+        // If this is the last slot on this row
+        if(i == numberOfColumns) {
+          yellownoln("|");
+        }
+      }
+
+      yellow("\n" + getBorder("-", numberOfColumns));
+
+      while (rs.next()) {
         for (int i = 1; i <= numberOfColumns; i++) {
-          String columnName = rsmd.getColumnName(i);
-          yellownoln(padRight(columnName,30));
-        }
-        System.out.println("\n");
+          String columnValue = rs.getString(i);
+          yellownoln("| " + padRight(columnValue,30));
 
-        while (rs.next()) {
-          for (int i = 1; i <= numberOfColumns; i++) {
-            String columnValue = rs.getString(i);
-            yellownoln(padRight(columnValue,30));
+          // If this is the last slot on this row
+          if(i == numberOfColumns) {
+            yellownoln("|");
           }
-          System.out.println("");
         }
-
-      } catch (SQLException sql) {
+        System.out.println("");
+      }
+    } catch (SQLException sql) {
         red(sql.toString());
       }
-    }
+    yellow(getBorder("=", numberOfColumns) + "\n");
+  }
 }
 

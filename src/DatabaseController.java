@@ -12,9 +12,9 @@ public class DatabaseController {
   public void makeConnection() {
     try {
       CON = DriverManager.getConnection(JDBC.DB_URL, JDBC.USER, JDBC.PASS);
-      JDBC.OUTPUT.success("Connected to database!");
+      JDBC.OUTPUT.success("Connected to the database!");
     } catch(SQLException err) {
-      JDBC.OUTPUT.error(err.toString());
+      JDBC.OUTPUT.error("Found no database running on localhost:3306");
 
       try {
         // The wd database is not present, so we create it
@@ -24,7 +24,8 @@ public class DatabaseController {
         stmt.execute("CREATE DATABASE wd");
         JDBC.DB_URL = "jdbc:mysql://localhost:3306/wd?allowPublicKeyRetrieval=true&useSSL=false";
         CON = DriverManager.getConnection(JDBC.DB_URL, JDBC.USER, JDBC.PASS);
-        JDBC.OUTPUT.success("Empty databse 'wd' created for you!");
+        JDBC.OUTPUT.success("Empty database 'wd' created for you!");
+        JDBC.OUTPUT.success("Connected to the database!");
       } catch (SQLException err2) {}
     }
   }
@@ -47,6 +48,7 @@ public class DatabaseController {
       stmt.execute("use wd");
       executeScript("models/models");
       JDBC.OUTPUT.model("models/models");
+      JDBC.OUTPUT.success("Databaseschema migrated!");
     } catch (SQLException sql) {
       JDBC.OUTPUT.error(sql.toString());
     } catch (IOException io) {
@@ -60,7 +62,7 @@ public class DatabaseController {
       stmt.execute("DROP DATABASE wd");
       JDBC.OUTPUT.success("Database dropped!");
     } catch(SQLException sql) {
-      JDBC.OUTPUT.error(sql.toString());
+      JDBC.OUTPUT.error("Can't drop database as it does not exist");
     }
   }
 

@@ -16,13 +16,13 @@ public class JDBC {
 
   public static void main(String[] args) {
     // Try to make a connection to the database
+    OUTPUT.welcome();
     DB.makeConnection();
 
     int userInput;
     Boolean next = true;
     Scanner in = new Scanner(System.in);
 
-    OUTPUT.welcome();
     while (next) {
       OUTPUT.menu();
       OUTPUT.user("User choise: ");
