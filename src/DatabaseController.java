@@ -46,7 +46,7 @@ public class DatabaseController {
       stmt.execute("CREATE DATABASE IF NOT EXISTS wd");
       stmt.execute("use wd");
       executeScript("models/models");
-      JDBC.OUTPUT.fixture("models/models");
+      JDBC.OUTPUT.model("models/models");
     } catch (SQLException sql) {
       JDBC.OUTPUT.error(sql.toString());
     } catch (IOException io) {
@@ -80,7 +80,8 @@ public class DatabaseController {
       Statement stmt = CON.createStatement();
       stmt.execute("use wd");
 
-      // If the 'use wd' does not throw an exeption we can run the migrations
+      // If the 'use wd' does not throw an exeption we can run the migration
+      System.out.println();
       for(String s : scripts) {
         try {
           executeScript(s);
@@ -91,6 +92,7 @@ public class DatabaseController {
           JDBC.OUTPUT.error(io.toString());
         }
       }
+      System.out.println();
     } catch (SQLException sql) {
       JDBC.OUTPUT.error("Can't apply fixtures with no database!");
     }

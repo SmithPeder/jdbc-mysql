@@ -10,6 +10,8 @@ public class Output {
 
   void menu() {
     white("=============================");
+    white("==========  MENU  ===========");
+    white("=============================");
     white("| 0 - Save and quit         |");
     white("| 1 - Migrate database      |");
     white("| 2 - Load fixtures         |");
@@ -49,6 +51,7 @@ public class Output {
     white("=============================");
     white("| 0 - Back                  |");
     white("| 1 - Get all workouts      |");
+    white("| 2 - Add new workout       |");
     white("=============================");
   }
 
@@ -81,12 +84,20 @@ public class Output {
     System.out.println((char)27 + "[34m" + s);
   }
 
+  void user(String s) {
+    System.out.print((char)27 + "[35m" + s);
+  }
+
   void success(String s) {
     System.out.println((char)27 + "[32m" + "\nSUCCESS: " + s + "\n");
   }
 
   void fixture(String s) {
     System.out.println((char)27 + "[32m" + "SUCCESS: " + String.format("%-40s", s) + "loaded!");
+  }
+
+  void model(String s) {
+    System.out.println((char)27 + "[32m" + "\nSUCCESS: " + String.format("%-40s", s) + "loaded!\n");
   }
 
   void red(String s) {

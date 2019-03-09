@@ -17,7 +17,7 @@ public class GroupController extends BaseController{
 
     while (next) {
       JDBC.OUTPUT.groupMenu();
-      System.out.print("User choise: ");
+      JDBC.OUTPUT.user("User choise: ");
       userInput = Integer.valueOf(in.next());
 
       switch(userInput) {
@@ -28,7 +28,7 @@ public class GroupController extends BaseController{
           getAll();
           break;
         default:
-          System.out.println("DEFAULT");
+          JDBC.OUTPUT.error("Illegal value!");
       }
     }
   }

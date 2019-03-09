@@ -17,7 +17,7 @@ public class EquipmentController extends BaseController {
 
     while (next) {
       JDBC.OUTPUT.equipmentMenu();
-      System.out.print("User choise: ");
+      JDBC.OUTPUT.user("User choise: ");
       userInput = Integer.valueOf(in.next());
 
       switch(userInput) {
@@ -31,7 +31,7 @@ public class EquipmentController extends BaseController {
           registerEquipment();
           break;
         default:
-          System.out.println("DEFAULT");
+          JDBC.OUTPUT.error("Illegal value!");
       }
     }
   }
@@ -41,9 +41,9 @@ public class EquipmentController extends BaseController {
     Scanner in = new Scanner(System.in);
 
     try {
-      System.out.print("Equipment name: ");
+      JDBC.OUTPUT.user("Equipment name: ");
       name = in.next();
-      System.out.print("Equipment decription: ");
+      JDBC.OUTPUT.user("Equipment decription: ");
       description = in.next();
 
       stmt = CON.createStatement();

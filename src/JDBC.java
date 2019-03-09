@@ -25,7 +25,7 @@ public class JDBC {
     OUTPUT.welcome();
     while (next) {
       OUTPUT.menu();
-      System.out.print("User choise: ");
+      OUTPUT.user("User choise: ");
       userInput = Integer.valueOf(in.next());
 
       switch(userInput) {

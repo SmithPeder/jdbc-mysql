@@ -17,7 +17,7 @@ public class ExerciseController extends BaseController {
 
     while (next) {
       JDBC.OUTPUT.exerciseMenu();
-      System.out.print("User choise: ");
+      JDBC.OUTPUT.user("User choise: ");
       userInput = Integer.valueOf(in.next());
 
       switch(userInput) {
@@ -31,7 +31,7 @@ public class ExerciseController extends BaseController {
           registerExercise();
           break;
         default:
-          System.out.println("DEFAULT");
+          JDBC.OUTPUT.error("Illegal value!");
       }
     }
   }
@@ -41,11 +41,11 @@ public class ExerciseController extends BaseController {
     Scanner in = new Scanner(System.in);
 
     try {
-      System.out.print("Exercise name: ");
+      JDBC.OUTPUT.user("Exercise name: ");
       name = in.next();
-      System.out.print("Exercise equipment id: ");
+      JDBC.OUTPUT.user("Exercise equipment id: ");
       equipment_id = in.next();
-      System.out.print("Exercise description: ");
+      JDBC.OUTPUT.user("Exercise description: ");
       description = in.next();
 
       stmt = CON.createStatement();
@@ -53,7 +53,7 @@ public class ExerciseController extends BaseController {
           "INSERT INTO exercise (name, equipment_id, description)" +
           "VALUES('"+ name +"' , " + equipment_id + " , '"+ description +"');"
           );
-      JDBC.OUTPUT.success("Equipment: " + name + " created!");
+      JDBC.OUTPUT.success("Exercise: " + name + " created!");
     } catch(SQLException sql) {
       JDBC.OUTPUT.error(sql.toString());
     }
