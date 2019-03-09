@@ -15,17 +15,17 @@ create table if not exists workout (
 
 create table if not exists equipment (
   id integer not null auto_increment,
-  name varchar(50),
-  description varchar(256),
+  name varchar(25),
+  description varchar(25),
 
   primary key (id)
 );
 
 create table if not exists note (
   id integer not null auto_increment,
-  purpose varchar(256),
-  experiance varchar(256),
-  additional_comment varchar(512),
+  purpose varchar(25),
+  experiance varchar(25),
+  additional_comment varchar(25),
   workout_id integer not null,
 
   primary key (id),
@@ -34,9 +34,9 @@ create table if not exists note (
 
 create table if not exists exercise (
   id integer not null auto_increment,
-  name varchar(50),
+  name varchar(25),
   equipment_id integer,
-  description varchar(256),
+  description varchar(25),
 
   primary key (id),
   foreign key (equipment_id) references equipment(id)
@@ -53,7 +53,7 @@ create table if not exists workout_exercise (
 
 create table if not exists exercise_group (
   id integer not null auto_increment,
-  name varchar(50),
+  name varchar(25),
 
   primary key (id)
 );
