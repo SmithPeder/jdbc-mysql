@@ -34,6 +34,7 @@ public class Output {
     white("=============================");
     white("| 0 - Back                  |");
     white("| 1 - Get all exercises     |");
+    white("| 2 - Add new exercise      |");
     white("=============================");
   }
 

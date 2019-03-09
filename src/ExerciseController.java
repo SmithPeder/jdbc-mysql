@@ -27,9 +27,35 @@ public class ExerciseController extends BaseController {
         case 1:
           getAll();
           break;
+        case 2:
+          registerExercise();
+          break;
         default:
           System.out.println("DEFAULT");
       }
+    }
+  }
+
+  private void registerExercise() {
+    String name, equipment_id, description;
+    Scanner in = new Scanner(System.in);
+
+    try {
+      System.out.print("Exercise name: ");
+      name = in.next();
+      System.out.print("Exercise equipment id: ");
+      equipment_id = in.next();
+      System.out.print("Exercise description: ");
+      description = in.next();
+
+      stmt = CON.createStatement();
+      stmt.executeUpdate(
+          "INSERT INTO exercise (name, equipment_id, description)" +
+          "VALUES('"+ name +"' , " + equipment_id + " , '"+ description +"');"
+          );
+      JDBC.OUTPUT.success("Equipment: " + name + " created!");
+    } catch(SQLException sql) {
+      JDBC.OUTPUT.error(sql.toString());
     }
   }
 }
