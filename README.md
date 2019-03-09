@@ -28,13 +28,18 @@ $ mysql -u root -p
 
 ## Running java source code
 
-> This project utilize he `JDBC api` to connect to the MySQL database
+> This project utilize the `JDBC api` to connect to the MySQL database
 
 The connector can be download [here](https://dev.mysql.com/downloads/connector/j/8.0.html). After downloading the `.jar` you'll need to add it to your `CLASSPATH`.
 
 ```sh
 # Note the `YOUR_PATH` section, as you can put this wherever you want.
 export CLASSPATH=.:$CLASSPATH:~/[YOUR_PATH]/mysql-connector-java-8.0.15.jar
+
+# Then compile and the `JDBC.java` file
+$ cd src/
+$ javac JDBC.java && java JDBC
+
 ```
 
 
@@ -48,8 +53,8 @@ $ docker-compose kill
 $ docker-compose down
 ```
 
-## About project
+## Gif
 
-The main database is called `wd` for workout-diary. When you gain access to the MySQL database you can list the current databases with `show databases;`. Without running `models.sql` script, there will be no database names `wd`.
+> Preview
 
-In the __./fixtures__ folder there are `insert` scripts that will populate your tables with test data.
+![](mov.gif)
