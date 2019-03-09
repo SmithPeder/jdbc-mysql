@@ -20,7 +20,7 @@ public abstract class BaseController {
       ResultSetMetaData rsmd = rs.getMetaData();
       JDBC.OUTPUT.printColumns(rs, rsmd);
     } catch(SQLException sql) {
-      JDBC.OUTPUT.red(sql.toString());
+      JDBC.OUTPUT.error(sql.toString());
     }
   }
 }

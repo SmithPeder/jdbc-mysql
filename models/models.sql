@@ -1,6 +1,6 @@
 use wd;
 
-create table workout (
+create table if not exists workout (
   id integer not null,
   date datetime,
   time time,
@@ -13,7 +13,7 @@ create table workout (
   constraint check (performace between 1 and 10)
 );
 
-create table equipment (
+create table if not exists equipment (
   id integer not null,
   name varchar(50),
   description varchar(256),
@@ -21,7 +21,7 @@ create table equipment (
   primary key (id)
 );
 
-create table note (
+create table if not exists note (
   id integer not null,
   purpose varchar(256),
   experiance varchar(256),
@@ -32,7 +32,7 @@ create table note (
   foreign key (workout_id) references workout(id)
 );
 
-create table exercise (
+create table if not exists exercise (
   id integer not null,
   name varchar(50),
   equipment_id integer,
@@ -42,7 +42,7 @@ create table exercise (
   foreign key (equipment_id) references equipment(id)
 );
 
-create table workout_exercise (
+create table if not exists workout_exercise (
   workout_id integer not null,
   exercise_id integer not null,
 
@@ -51,14 +51,14 @@ create table workout_exercise (
   foreign key (exercise_id) references exercise(id)
 );
 
-create table exercise_group (
+create table if not exists exercise_group (
   id integer not null,
   name varchar(50),
 
   primary key (id)
 );
 
-create table exercise_exercise_group (
+create table if not exists exercise_exercise_group (
   exercise_id integer not null,
   exercise_group_id integer not null,
 

@@ -15,6 +15,17 @@ public class DatabaseController {
       JDBC.OUTPUT.success("Connected to database!");
     } catch(SQLException err) {
       JDBC.OUTPUT.error(err.toString());
+
+      try {
+        // The wd database is not present, so we create it
+        JDBC.DB_URL = "jdbc:mysql://localhost:3306/?allowPublicKeyRetrieval=true&useSSL=false";
+        CON = DriverManager.getConnection(JDBC.DB_URL, JDBC.USER, JDBC.PASS);
+        Statement stmt = CON.createStatement();
+        stmt.execute("CREATE DATABASE wd");
+        JDBC.DB_URL = "jdbc:mysql://localhost:3306/wd?allowPublicKeyRetrieval=true&useSSL=false";
+        CON = DriverManager.getConnection(JDBC.DB_URL, JDBC.USER, JDBC.PASS);
+        JDBC.OUTPUT.success("Empty databse 'wd' created for you!");
+      } catch (SQLException err2) {}
     }
   }
 
@@ -31,23 +42,13 @@ public class DatabaseController {
   // Migrate database schema
   public void migrateDatabase() {
     try {
-      Statement stmt = CON.createStatement();
-      stmt.execute("CREATE DATABASE wd");
-      // Modify the URL with the database name
-      JDBC.DB_URL = "jdbc:mysql://localhost:3306/?database_wd&allowPublicKeyRetrieval=true&useSSL=false";
-      try {
-        executeScript("models/models");
-        JDBC.OUTPUT.success("Database migrated!");
-      } catch (SQLException sql) {
-        JDBC.OUTPUT.error(sql.toString());
-      } catch (IOException io) {
-        JDBC.OUTPUT.error(io.toString());
-      }
-
-    } catch(SQLException sql) {
+      executeScript("models/models");
+      JDBC.OUTPUT.fixture("models/models");
+    } catch (SQLException sql) {
       JDBC.OUTPUT.error(sql.toString());
+    } catch (IOException io) {
+      JDBC.OUTPUT.error(io.toString());
     }
-
   }
 
   public void dropDatabase() {

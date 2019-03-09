@@ -107,17 +107,15 @@ public class Output {
     try {
     int numberOfColumns = rsmd.getColumnCount();
         for (int i = 1; i <= numberOfColumns; i++) {
-          if (i > 1) System.out.print(",  ");
           String columnName = rsmd.getColumnName(i);
-          yellownoln(columnName);
+          yellownoln(padRight(columnName,30));
         }
-        System.out.println("");
+        System.out.println("\n");
 
         while (rs.next()) {
           for (int i = 1; i <= numberOfColumns; i++) {
-            if (i > 1) System.out.print(",  ");
             String columnValue = rs.getString(i);
-            yellownoln(columnValue);
+            yellownoln(padRight(columnValue,30));
           }
           System.out.println("");
         }

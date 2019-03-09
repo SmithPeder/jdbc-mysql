@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class JDBC {
   public static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-  public static String DB_URL = "jdbc:mysql://localhost:3306/?allowPublicKeyRetrieval=true&useSSL=false";
+  public static String DB_URL = "jdbc:mysql://localhost:3306/wd?allowPublicKeyRetrieval=true&useSSL=false";
   public static final String PATH = "/Users/smith/code/jdbc-mysql/";
   public static final Output OUTPUT = new Output();
   public static final DatabaseController DB = new DatabaseController();
@@ -64,7 +64,7 @@ public class JDBC {
           gc.start();
           break;
         default:
-          System.out.println("DEFAULT");
+          JDBC.OUTPUT.error("Illegal value!");
       }
     }
   }
