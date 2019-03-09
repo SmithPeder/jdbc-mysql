@@ -31,6 +31,7 @@ public class JDBC {
       switch(userInput) {
         case 0:
           next = false;
+          DB.closeConnection();
           OUTPUT.save();
           break;
         case 1:

@@ -1,5 +1,3 @@
-drop DATABASE if exists wd;
-create database wd;
 use wd;
 
 create table workout (

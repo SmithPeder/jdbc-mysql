@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class DatabaseController {
 
   public static Connection CON;
+
   // Try to make a connetcion to the running MySQL database
   public void makeConnection() {
     try {
@@ -17,26 +18,43 @@ public class DatabaseController {
     }
   }
 
+  // Kill the connetcion to the running MySQL database
+  public void closeConnection() {
+    try {
+      CON.close();
+      JDBC.OUTPUT.success("Closed connection to the database!");
+    } catch(SQLException err) {
+      JDBC.OUTPUT.error(err.toString());
+    }
+  }
+
   // Migrate database schema
   public void migrateDatabase() {
     try {
-      executeScript("models/models");
-      JDBC.OUTPUT.success("Database migrated!");
-    } catch (SQLException sql) {
+      Statement stmt = CON.createStatement();
+      stmt.execute("CREATE DATABASE wd");
+      // Modify the URL with the database name
+      JDBC.DB_URL = "jdbc:mysql://localhost:3306/?database_wd&allowPublicKeyRetrieval=true&useSSL=false";
+      try {
+        executeScript("models/models");
+        JDBC.OUTPUT.success("Database migrated!");
+      } catch (SQLException sql) {
+        JDBC.OUTPUT.error(sql.toString());
+      } catch (IOException io) {
+        JDBC.OUTPUT.error(io.toString());
+      }
+
+    } catch(SQLException sql) {
       JDBC.OUTPUT.error(sql.toString());
-    } catch (IOException io) {
-      JDBC.OUTPUT.error(io.toString());
     }
 
-    // Modify the URL with the database name
-    JDBC.DB_URL = "jdbc:mysql://localhost:3306/?database_wd&allowPublicKeyRetrieval=true&useSSL=false";
   }
 
   public void dropDatabase() {
     try {
       Statement stmt = CON.createStatement();
       stmt.execute("DROP DATABASE wd");
-      JDBC.OUTPUT.success("SUCCESS: Database dropped!");
+      JDBC.OUTPUT.success("Database dropped!");
     } catch(SQLException sql) {
       JDBC.OUTPUT.error(sql.toString());
     }
@@ -57,7 +75,7 @@ public class DatabaseController {
     for(String s : scripts) {
       try {
         executeScript(s);
-        JDBC.OUTPUT.success(s + " loaded!");
+        JDBC.OUTPUT.fixture(s);
       } catch (SQLException sql) {
         JDBC.OUTPUT.error(sql.toString());
       } catch (IOException io) {

@@ -2,11 +2,10 @@ import java.sql.*;
 
 public class Output {
   void welcome() {
-    System.out.println("\n\n");
-    white("=============================");
-    white("|   Welcome to the diary    |");
-    white("=============================");
-    System.out.println("\n\n");
+    blue("=============================");
+    blue("|   Welcome to the diary    |");
+    blue("=============================");
+    System.out.println();
   }
 
   void menu() {
@@ -59,7 +58,6 @@ public class Output {
   }
 
   void save() {
-    System.out.println("\n\n");
     white("=============================");
     white("|      SAVED AND QUIT       |");
     white("=============================");
@@ -77,8 +75,16 @@ public class Output {
     System.out.println((char)27 + "[32m" + s);
   }
 
+  void blue(String s) {
+    System.out.println((char)27 + "[34m" + s);
+  }
+
   void success(String s) {
     System.out.println((char)27 + "[32m" + "\nSUCCESS: " + s + "\n");
+  }
+
+  void fixture(String s) {
+    System.out.println((char)27 + "[32m" + "SUCCESS: " + String.format("%-40s", s) + "loaded!");
   }
 
   void red(String s) {
@@ -91,6 +97,10 @@ public class Output {
 
   void white(String s) {
     System.out.println((char)27 + "[0m" + s);
+  }
+
+  String padRight(String s, int n) {
+    return String.format("%1$-" + n + "s", s);
   }
 
   void printColumns(ResultSet rs, ResultSetMetaData rsmd) {
