@@ -42,6 +42,9 @@ public class DatabaseController {
   // Migrate database schema
   public void migrateDatabase() {
     try {
+      Statement stmt = CON.createStatement();
+      stmt.execute("CREATE DATABASE IF NOT EXISTS wd");
+      stmt.execute("use wd");
       executeScript("models/models");
       JDBC.OUTPUT.fixture("models/models");
     } catch (SQLException sql) {
