@@ -55,7 +55,7 @@ public class Output {
     white("| 0   -   Back                                         |");
     white("| 1   -   Get all workouts                             |");
     white("| 2   -   Add new workout                              |");
-    white("| 3   -   Fetch workouts                               |");
+    white("| 3   -   Fetch workouts with comments                 |");
     white("========================================================");
   }
 
@@ -63,6 +63,7 @@ public class Output {
     white("========================================================");
     white("| 0   -   Back                                         |");
     white("| 1   -   Get all groups                               |");
+    white("| 2   -   Add new group                                |");
     white("========================================================");
   }
 

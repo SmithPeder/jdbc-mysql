@@ -27,9 +27,30 @@ public class GroupController extends BaseController{
         case 1:
           getAll();
           break;
+        case 2:
+          registerGroup();
+          break;
         default:
           JDBC.OUTPUT.error("Illegal value!");
       }
+    }
+  }
+
+  private void registerGroup() {
+    String name;
+    Scanner in = new Scanner(System.in);
+
+    try {
+      JDBC.OUTPUT.user("Group name: ");
+      name = in.next();
+
+      stmt = CON.createStatement();
+      stmt.executeUpdate(
+          "INSERT INTO exercise_group (name) VALUES('"+ name +"');"
+          );
+      JDBC.OUTPUT.success("Group: " + name + " created!");
+    } catch(SQLException sql) {
+      JDBC.OUTPUT.error(sql.toString());
     }
   }
 }
