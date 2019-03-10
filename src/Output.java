@@ -40,6 +40,7 @@ public class Output {
     white("| 0   -   Back                                         |");
     white("| 1   -   Get all exercises                            |");
     white("| 2   -   Add new exercise                             |");
+    white("| 3   -   Find simmilar exercises                      |");
     white("========================================================");
   }
 
@@ -64,6 +65,7 @@ public class Output {
     white("| 0   -   Back                                         |");
     white("| 1   -   Get all groups                               |");
     white("| 2   -   Add new group                                |");
+    white("| 3   -   Find exercises in group                      |");
     white("========================================================");
   }
 

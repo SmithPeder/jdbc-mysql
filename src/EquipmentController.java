@@ -56,4 +56,22 @@ public class EquipmentController extends BaseController {
       JDBC.OUTPUT.error(sql.toString());
     }
   }
+
+  private void findSimilar() {
+    String name;
+    Scanner in = new Scanner(System.in);
+
+    try {
+      JDBC.OUTPUT.user("Find exercises simmilar to name: ");
+      name = in.next();
+
+      stmt = CON.createStatement();
+      stmt.executeUpdate(
+          "INSERT INTO exercise_group (name) VALUES('"+ name +"');"
+          );
+      JDBC.OUTPUT.success("Group: " + name + " created!");
+    } catch(SQLException sql) {
+      JDBC.OUTPUT.error(sql.toString());
+    }
+  }
 }

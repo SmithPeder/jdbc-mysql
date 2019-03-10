@@ -17,7 +17,7 @@ public class NoteController extends BaseController {
 
     while (next) {
       JDBC.OUTPUT.noteMenu();
-      JDBC.OUTPUT.user("User choise: ");
+      JDBC.OUTPUT.user("User choice: ");
       userInput = Integer.valueOf(in.next());
 
       switch(userInput) {
