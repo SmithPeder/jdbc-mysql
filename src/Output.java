@@ -55,6 +55,7 @@ public class Output {
     white("| 0   -   Back                                         |");
     white("| 1   -   Get all workouts                             |");
     white("| 2   -   Add new workout                              |");
+    white("| 3   -   Fetch workouts                               |");
     white("========================================================");
   }
 

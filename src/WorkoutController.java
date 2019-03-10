@@ -30,6 +30,9 @@ public class WorkoutController extends BaseController {
         case 2:
           registerWorkout();
           break;
+        case 3:
+          fetchLatestWithNotes();
+          break;
         default:
           JDBC.OUTPUT.error("Illegal value!");
       }
@@ -37,14 +40,12 @@ public class WorkoutController extends BaseController {
   }
 
   private void registerWorkout() {
-    String date, time, duration, shape, performance;
+    String date, duration, shape, performance;
     Scanner in = new Scanner(System.in);
 
     try {
       JDBC.OUTPUT.user("Workout date [YYYY-MM-DD HH:MM:SS]: ");
       date = in.nextLine();
-      JDBC.OUTPUT.user("Workout time [HH:MM:SS]: ");
-      time = in.nextLine();
       JDBC.OUTPUT.user("Workout duration [HH:MM:SS]: ");
       duration = in.nextLine();
       JDBC.OUTPUT.user("Workout shape: ");
@@ -54,10 +55,32 @@ public class WorkoutController extends BaseController {
 
       stmt = CON.createStatement();
       stmt.executeUpdate(
-          "INSERT INTO workout (date, time, duration, shape, performance)" +
-          "VALUES('"+ date +"' , '" + time + "' , '"+ duration +"', " + shape + ", " + performance + ");"
+          "INSERT INTO workout (date, duration, shape, performance)" +
+          "VALUES('"+ date +"' , '"+ duration +"', " + shape + ", " + performance + ");"
           );
       JDBC.OUTPUT.success("Workout saved!");
+    } catch(SQLException sql) {
+      JDBC.OUTPUT.error(sql.toString());
+    }
+  }
+
+  private void fetchLatestWithNotes() {
+    String numberOfWorkouts;
+    Scanner in = new Scanner(System.in);
+
+    try {
+      JDBC.OUTPUT.user("Number of workouts: ");
+      numberOfWorkouts = in.nextLine();
+
+      stmt = CON.createStatement();
+      stmt = CON.createStatement();
+      ResultSet rs = stmt.executeQuery(
+          "SELECT w.date, n.experiance, n.additional_comment " +
+          "FROM workout as w join note as n on w.id=n.workout_id " +
+          "order by date limit 0," + numberOfWorkouts + ";");
+      ResultSetMetaData rsmd = rs.getMetaData();
+      JDBC.OUTPUT.printColumns(rs, rsmd);
+      JDBC.OUTPUT.success("Workouts fetched!");
     } catch(SQLException sql) {
       JDBC.OUTPUT.error(sql.toString());
     }

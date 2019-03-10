@@ -3,7 +3,6 @@ use wd;
 create table if not exists workout (
   id integer not null auto_increment,
   date datetime,
-  time time,
   duration time,
   shape integer not null,
   performance integer not null,
