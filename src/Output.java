@@ -42,7 +42,7 @@ public class Output {
     white("| 0   -   Back                                         |");
     white("| 1   -   Get all exercises                            |");
     white("| 2   -   Add new exercise                             |");
-    white("| 3   -   Find simmilar exercises                      |");
+    white("| 3   -   Find similar exercises                      |");
     white("========================================================");
   }
 
