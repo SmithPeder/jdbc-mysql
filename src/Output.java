@@ -28,7 +28,8 @@ public class Output {
   }
 
   void equipmentMenu() {
-    white("========================================================");
+    System.out.println();
+    white("==================  Equipment Menu  ====================");
     white("| 0   -   Back                                         |");
     white("| 1   -   Get all equipment                            |");
     white("| 2   -   Add new equipment                            |");
@@ -36,7 +37,8 @@ public class Output {
   }
 
   void exerciseMenu() {
-    white("========================================================");
+    System.out.println();
+    white("===================  Exercise Menu  ====================");
     white("| 0   -   Back                                         |");
     white("| 1   -   Get all exercises                            |");
     white("| 2   -   Add new exercise                             |");
@@ -45,14 +47,16 @@ public class Output {
   }
 
   void noteMenu() {
-    white("========================================================");
+    System.out.println();
+    white("=====================  Note Menu  ======================");
     white("| 0   -   Back                                         |");
     white("| 1   -   Get all notes                                |");
     white("========================================================");
   }
 
   void workoutMenu() {
-    white("========================================================");
+    System.out.println();
+    white("===================  Workout Menu  =====================");
     white("| 0   -   Back                                         |");
     white("| 1   -   Get all workouts                             |");
     white("| 2   -   Add new workout                              |");
@@ -61,7 +65,8 @@ public class Output {
   }
 
   void groupMenu() {
-    white("========================================================");
+    System.out.println();
+    white("====================  Group Menu  ======================");
     white("| 0   -   Back                                         |");
     white("| 1   -   Get all groups                               |");
     white("| 2   -   Add new group                                |");
