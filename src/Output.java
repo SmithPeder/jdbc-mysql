@@ -42,7 +42,8 @@ public class Output {
     white("| 0   -   Back                                         |");
     white("| 1   -   Get all exercises                            |");
     white("| 2   -   Add new exercise                             |");
-    white("| 3   -   Find similar exercises                      |");
+    white("| 3   -   Find similar exercises                       |");
+    white("| 4   -   Find result log for exercise                 |");
     white("========================================================");
   }
 
@@ -51,6 +52,7 @@ public class Output {
     white("=====================  Note Menu  ======================");
     white("| 0   -   Back                                         |");
     white("| 1   -   Get all notes                                |");
+    white("| 2   -   Add notes                                    |");
     white("========================================================");
   }
 
@@ -81,47 +83,47 @@ public class Output {
   }
 
   void yellow(String s) {
-    System.out.println((char)27 + "[33m" + s);
+    System.out.println((char) 27 + "[33m" + s);
   }
 
   void yellownoln(String s) {
-    System.out.print((char)27 + "[33m" + s);
+    System.out.print((char) 27 + "[33m" + s);
   }
 
   void green(String s) {
-    System.out.println((char)27 + "[32m" + s);
+    System.out.println((char) 27 + "[32m" + s);
   }
 
   void blue(String s) {
-    System.out.println((char)27 + "[34m" + s);
+    System.out.println((char) 27 + "[34m" + s);
   }
 
   void user(String s) {
-    System.out.print((char)27 + "[35m" + s);
+    System.out.print((char) 27 + "[35m" + s);
   }
 
   void success(String s) {
-    System.out.println((char)27 + "[32m" + "\nSUCCESS: " + s + "\n");
+    System.out.println((char) 27 + "[32m" + "\nSUCCESS: " + s + "\n");
   }
 
   void fixture(String s) {
-    System.out.println((char)27 + "[32m" + "SUCCESS: " + String.format("%-40s", s) + "loaded!");
+    System.out.println((char) 27 + "[32m" + "SUCCESS: " + String.format("%-40s", s) + "loaded!");
   }
 
   void model(String s) {
-    System.out.println((char)27 + "[32m" + "\nSUCCESS: " + String.format("%-40s", s) + "loaded!\n");
+    System.out.println((char) 27 + "[32m" + "\nSUCCESS: " + String.format("%-40s", s) + "loaded!\n");
   }
 
   void red(String s) {
-    System.out.println((char)27 + "[31m" + s);
+    System.out.println((char) 27 + "[31m" + s);
   }
 
   void error(String s) {
-    System.out.println((char)27 + "[31m" + "\nERROR: " + s + "\n");
+    System.out.println((char) 27 + "[31m" + "\nERROR: " + s + "\n");
   }
 
   void white(String s) {
-    System.out.println((char)27 + "[0m" + s);
+    System.out.println((char) 27 + "[0m" + s);
   }
 
   String padRight(String s, int n) {
@@ -129,7 +131,7 @@ public class Output {
   }
 
   String getBorder(String s, int n) {
-    return new String(new char[(n*32)+1]).replace("\0", s);
+    return new String(new char[(n * 32) + 1]).replace("\0", s);
   }
 
   void printColumns(ResultSet rs, ResultSetMetaData rsmd) {
@@ -139,10 +141,10 @@ public class Output {
       yellow("\n" + getBorder("=", numberOfColumns));
       for (int i = 1; i <= numberOfColumns; i++) {
         String columnName = rsmd.getColumnName(i);
-        yellownoln("| " + padRight(columnName,30));
+        yellownoln("| " + padRight(columnName, 30));
 
         // If this is the last slot on this row
-        if(i == numberOfColumns) {
+        if (i == numberOfColumns) {
           yellownoln("|");
         }
       }
@@ -152,19 +154,18 @@ public class Output {
       while (rs.next()) {
         for (int i = 1; i <= numberOfColumns; i++) {
           String columnValue = rs.getString(i);
-          yellownoln("| " + padRight(columnValue,30));
+          yellownoln("| " + padRight(columnValue, 30));
 
           // If this is the last slot on this row
-          if(i == numberOfColumns) {
+          if (i == numberOfColumns) {
             yellownoln("|");
           }
         }
         System.out.println("");
       }
     } catch (SQLException sql) {
-        red(sql.toString());
-      }
+      red(sql.toString());
+    }
     yellow(getBorder("=", numberOfColumns) + "\n");
   }
 }
-

@@ -13,7 +13,7 @@ public class DatabaseController {
     try {
       CON = DriverManager.getConnection(JDBC.DB_URL, JDBC.USER, JDBC.PASS);
       JDBC.OUTPUT.success("Connected to the database!");
-    } catch(SQLException err) {
+    } catch (SQLException err) {
       JDBC.OUTPUT.error("Found no database running on localhost:3306");
 
       try {
@@ -26,7 +26,8 @@ public class DatabaseController {
         CON = DriverManager.getConnection(JDBC.DB_URL, JDBC.USER, JDBC.PASS);
         JDBC.OUTPUT.success("Empty database 'wd' created for you!");
         JDBC.OUTPUT.success("Connected to the database!");
-      } catch (SQLException err2) {}
+      } catch (SQLException err2) {
+      }
     }
   }
 
@@ -35,7 +36,7 @@ public class DatabaseController {
     try {
       CON.close();
       JDBC.OUTPUT.success("Closed connection to the database!");
-    } catch(SQLException err) {
+    } catch (SQLException err) {
       JDBC.OUTPUT.error(err.toString());
     }
   }
@@ -61,22 +62,15 @@ public class DatabaseController {
       Statement stmt = CON.createStatement();
       stmt.execute("DROP DATABASE wd");
       JDBC.OUTPUT.success("Database dropped!");
-    } catch(SQLException sql) {
+    } catch (SQLException sql) {
       JDBC.OUTPUT.error("Can't drop database as it does not exist");
     }
   }
 
   // Initialize development with premade fixtures
   public void initializeDevelopment() {
-    String[] scripts = new String[] {
-      "fixtures/workout",
-      "fixtures/equipment",
-      "fixtures/note",
-      "fixtures/exercise",
-      "fixtures/workout_exercise",
-      "fixtures/exercise_group",
-      "fixtures/exercise_exercise_group"
-    };
+    String[] scripts = new String[] { "fixtures/note", "fixtures/workout", "fixtures/equipment", "fixtures/exercise",
+        "fixtures/workout_exercise", "fixtures/exercise_group", "fixtures/exercise_exercise_group" };
 
     try {
       Statement stmt = CON.createStatement();
@@ -84,7 +78,7 @@ public class DatabaseController {
 
       // If the 'use wd' does not throw an exeption we can run the migration
       System.out.println();
-      for(String s : scripts) {
+      for (String s : scripts) {
         try {
           executeScript(s);
           JDBC.OUTPUT.fixture(s);
